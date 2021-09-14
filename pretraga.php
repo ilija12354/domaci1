@@ -7,12 +7,12 @@
    
     $pretraga=trim($pretraga);          //za skracivanje space-a
 
-    if($vrsta = 999 && empty($pretraga)){       //sve vrste i prazna pretraga prikazujem sva putovanja
+    if($vrsta == 999 && empty($pretraga)){       //sve vrste i prazna pretraga prikazujem sva putovanja
         $sql="SELECT * FROM putovanje";
     } else if($vrsta != 999 && empty($pretraga)){
         //SORTIRAJ PO vrsti putovanja
         $sql = "SELECT * FROM putovanje WHERE vrsta_id='$vrsta'";
-    } else if($vrsta = 999 && !empty($pretraga)){
+    } else if($vrsta == 999 && !empty($pretraga)){
         //SORTIRAJ PO NASLOVU %STRING%
         $sql = "SELECT * FROM putovanje WHERE naslov LIKE '%$pretraga%' ORDER BY id DESC";
     } else{

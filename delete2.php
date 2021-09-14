@@ -1,25 +1,22 @@
 <?php
-    include "dbconfig/konekcija.php";
+session_start();
+include "dbconfig/konekcija.php";
+$sql2="SELECT * FROM putovanje";
+$rezultat2=mysqli_query($con,$sql2);
 
-    $sql="SELECT * FROM vrsta";
-    $rezultat=mysqli_query($con,$sql);
-
-    $sql2="SELECT * FROM putovanje";
-    $rezultat2=mysqli_query($con,$sql2);
-
-    if(isset($_GET['submit'])){
-        $putovanje =$_GET['putovanje'];
-        $vrsta =$_GET['vrsta'];
-
-        $sql3 = "UPDATE putovanje SET vrsta_id='$vrsta' WHERE id='$putovanje'";
-        if(mysqli_query($con,$sql3)){
-            $msg = "Uspešno izmenjeno.";
-          } else {
-            $msg = "Greška prilikom izmene.";
-          }
+//da li postoji
+    //vadimo parametar vrsta_id pomocu get metode
+    if(isset($_GET['vrsta_id'])){
+        $vrsta_id=$_GET['vrsta_id'];
+        $sql="DELETE FROM putovanje WHERE id= '$vrsta_id'";
+        if(mysqli_query($con,$sql)){
+            echo "Ubili ste nase omiljeno putovanje :(";
+        }else{
+            echo "Došlo je do greške prilikom brisanja.";
         }
+    }
 
-?>
+?> 
 <!doctype html>
 <html lang="en">
   <head>
@@ -58,41 +55,32 @@
     <?php include "includes/navbar.php";?>
 
       </div>
-      <div class="row izmeni_putovanje">
-            <div class="col-lg-8 "></div>
-            <div class="col-lg-8 ">
-            <?php if (isset($msg)) { ?>
-                            <div class="alert alert-info">
-                            <?php echo $msg;  ?>
-                            </div>
-                        <?php } ?>
-                <form action="" method="GET">
-                    <select name="putovanje" id="putovanje" class="form-control">
-                        <option value="">Izaberi putovanje..</option>
+      <div class="row izmeni_putovanje" id="delete-kontejner">
+      
+            <div class="col-lg-12 ">
+                <form action="" method="POST">
+                <select name="putovanje" id="putovanje" class="form-control">
+                        <option value="">Izaberi putovanje kojem zelis da oduzmes zivot!</option>
                         <?php
+                            
                             while($red2=$rezultat2->fetch_object()){
                         ?>
                             <option value="<?php echo $red2->id; ?>"><?php echo $red2->naslov ; ?></option>
                         <?php
                             }
-                        ?>
-                    </select>
-                    <select name="vrsta" id="vrsta_id" class="form-control">
-                        <option value="">Izaberi vrstu..</option>
-                        <?php
-                            while($red=$rezultat->fetch_object()){
-                        ?>
-                            <option value="<?php echo $red->id; ?>"><?php echo $red->naziv; ?></option>
-                        <?php
-                            }
-                        ?>
+                        ?>                           
+                       
                     </select>
                     <br>
-                    <input type="submit" id="submit" name="submit" value="Izmeni" class="btn btn-success">
+                    <div class="d-grid gap-2 col-6 mx-auto">
+                    <button type="button"  onclick="obrisi();" class="btn btn-danger btn-block" >Obriši</button>
+                    </div>
                 </form>
             </div>
-            <div class="col-lg-8 "></div>
-        </div>
+      <div id="nesto" class="col-lg-3">
+      
+      </div>
+    </div>
  </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
@@ -102,7 +90,9 @@
             //kad se prikaze padajuci meni sa izborom, moram da izvucem id
            //pomocu JQUERY-ja
            var vrsta_id=$("#putovanje").val();
-           $.get( "delete.php?vrsta_id="+vrsta_id);
+           $.get( "delete.php?vrsta_id="+vrsta_id, function( data ) {
+            alert( data );
+            });
            // $.get( "kontroler.php?vest_id="+vest_id+" & akcija=obrisiVest", function( data ) {
            
            // });

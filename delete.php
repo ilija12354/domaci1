@@ -10,8 +10,7 @@ $rezultat2=mysqli_query($con,$sql2);
         $vrsta_id=$_GET['vrsta_id'];
         $sql="DELETE FROM putovanje WHERE id= '$vrsta_id'";
         if(mysqli_query($con,$sql)){
-            $_SESSION['brisanje']="Uspesno ste obrisali proizvod!";
-                    header('location:deletecopy.php');
+            echo "Ubili ste nase omiljeno putovanje :(";
         }else{
             echo "Došlo je do greške prilikom brisanja.";
         }
@@ -57,18 +56,7 @@ $rezultat2=mysqli_query($con,$sql2);
 
       </div>
       <div class="row izmeni_putovanje" id="delete-kontejner">
-      <?php
-        if(isset($_SESSION['brisanje'])){
-            ?>
-            <div class="alert alert-warning alert-dismissible fade show" role="alert">
-            <strong>Alo!</strong> <?php echo $_SESSION['brisanje']; ?>
-             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-            <?php
-            unset($_SESSION['brisanje']);
-        }
-            
-            ?>
+      
             <div class="col-lg-12 ">
                 <form action="" method="POST">
                 <select name="putovanje" id="putovanje" class="form-control">
@@ -102,7 +90,9 @@ $rezultat2=mysqli_query($con,$sql2);
             //kad se prikaze padajuci meni sa izborom, moram da izvucem id
            //pomocu JQUERY-ja
            var vrsta_id=$("#putovanje").val();
-           $.get( "delete.php?vrsta_id="+vrsta_id);
+           $.get( "delete.php?vrsta_id="+vrsta_id, function( data ) {
+            alert( data );
+            });
            // $.get( "kontroler.php?vest_id="+vest_id+" & akcija=obrisiVest", function( data ) {
            
            // });
