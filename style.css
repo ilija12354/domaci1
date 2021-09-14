@@ -1,0 +1,95 @@
+body{
+    background-color:#fdcb6e;
+}
+.navbar{
+    border-radius: 0px;
+    font-size: 16px;
+}
+
+.sortiraj_putovanja{
+    text-align: center;
+}
+
+
+#main-wrapper{
+    width: 500px;
+    margin: 0 auto;
+    background: white;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid #fab1a0;
+}
+
+/* pristupamo klasi pomoci .nazivKlase */
+.plane{
+    width: 150px;
+    text-align: center;
+}
+
+.mojaForma{
+    width: 450px;
+    margin: 0 auto;
+}
+
+.inputvalues{
+    width: 430px;
+    margin: 0 auto;
+    padding: 5px;
+}
+
+#login_btn{
+    margin-top: 10px;
+    background-color: #fdcb6e;
+    padding: 5px;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#register_btn{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: #fab1a0;
+    padding: 5px;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#signup_btn{
+    margin-top: 10px;
+    background-color: #fab1a0;
+    padding: 5px;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#back_btn{
+    margin-top: 10px;
+    background-color: #74b9ff;
+    padding: 5px;
+    color: white;
+    width: 30%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#logout_btn{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: #74b9ff;
+    padding: 5px;
+    color: white;
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}

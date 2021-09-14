@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <title>Registracija</title>
+    
+    <script>
+        $(document).ready(function () {
+            $('#signup_btn').click(function () {
+                $.ajax({
+                    type: "POST",
+                    url: "register.php",
+                    data: {
+                        username: $("#userUnos").val(),
+                        password: $("#passwordUnos").val()
+                       
+
+                    },
+                    success: function (data) {
+                        if (data === 'success') {
+                            window.location.replace('index.php');
+                        } else {
+                            alert("Greska prilikom registracije.");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+</head>
+<body style="background-color: rgb(17, 181, 228)">  <!--siva pozadina -->
+    <div id="main-wrapper">     <!--Dodamo beli box i popunjavamo ga-->
+        <center>
+            <h2>Registruj se</h2>
+            <img src="imgs/plane.jpg" class="plane"/>
+        </center>
+
+        <!-- zatim nam trebaju 2 labele i 2 text box-a-->
+        <form class="mojaForma" action="register.php" method="post">
+            <label><b>Username: </label><br>
+            <input name="username" type="text" class="inputvalues" id="userdUnos" placeholder="Unesi username" required/><br>
+            <label><b>Password: </label><br>
+            <input name="password" type="password" class="inputvalues" id="passwordUnos" placeholder="Unesi password" required/><br>
+            <label><b>Confirm password: </label><br>
+            <input name="cpassword" type="password" class="inputvalues" id="c_passwordUnos" placeholder="Potvrdi password" required/><br>
+            <input name="submit_btn" type="submit" id="signup_btn" value="Sign Up"/><br>
+            <a href="login1.php"><input type="button" id="back_btn" value="Back"/></a>
+        </form>
+
+    </div>
+
+</body>
+</html>
